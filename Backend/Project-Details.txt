@@ -1,1 +1,61 @@
+Multi-vendor marketplace web application using Laravel. 
 
+🎯 GOALS:
+This app will support three user roles:
+- Admin (manages platform)
+- Seller (manages own store/products/orders)
+- Buyer (browses & purchases products)
+---
+🔧 TECH DETAILS:
+- Laravel 11
+- Jetstream with Inertia.js (assume auth already set up)
+- Use Eloquent relationships
+- Use FormRequest validation
+- Use Laravel Policies for authorization
+- Use Resource classes for APIs
+- Use Laravel Notification system (optional but preferred)
+- Use Laravel Testing (PHPUnit) for basic feature testing
+---
+🧱 ENTITIES & TABLES TO CREATE:
+1. users  
+   - id, name, email, password, role (enum: admin, seller, buyer)
+2. seller_profiles  
+   - id, user_id (FK), store_name, logo_path, bio
+3. categories  
+   - id, name
+4. products  
+   - id, seller_id (FK), category_id (FK), title, description, price, stock, image_path
+5. orders  
+   - id, buyer_id (FK), total_price, status (pending, processing, shipped, delivered, cancelled), payment_method
+6. order_items  
+   - id, order_id (FK), product_id (FK), quantity, unit_price
+7. reviews  
+   - id, buyer_id (FK), product_id (FK), rating, comment
+8. withdrawals  
+   - id, seller_id (FK), amount, status (requested, approved, rejected)
+9. payments (optional)  
+   - id, order_id (FK), provider, status, payment_response
+---
+🧩 FEATURES TO IMPLEMENT
+### Authentication
+- Use Laravel Jetstream for Auth (assume ready)
+- Middleware for role-based access
+### Admin
+- Manage users (view, block, activate)
+- Approve/reject seller registration
+- Manage categories
+- View all orders
+- Manage withdrawal requests
+### Seller
+- Register as seller (with profile)
+- CRUD products
+- View/manage own orders
+- Request withdrawal
+- View sales summary
+### Buyer
+- Browse/search products
+- Add to cart
+- Checkout
+- View order history
+- Submit product reviews
+---
